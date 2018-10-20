@@ -1,31 +1,28 @@
-<!DOCTYPE html>
+#set("content") {
+<img src="/images/logo.png" class="mx-auto d-block" alt="TIL logo"/>
+<h1>Acronyms</h1>
+    #if(acronyms) {
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>#(title) | Acronyms</title>
-    </head>
-    <body>
-        <h1>Acronyms</h1>
-        #if(acronyms) {
-        
-        <table>
-            <thead>
-                <th>Short</th>
-                <th>Long</th>
-            </thead>
-            <tbody>
-                #for(acronym in acronyms) {
-                <tr>
-                    <td><a href="/acronyms/#(acronym.id)">#(acronym.short)</a></td>
-                    <td>#(acronym.long)</td>
-                </tr>
-                }
-            </tbody>
-        </table>
-        
-        } else {
-        <h2>There aren't any acronyms yet!</h2>
-        }
-    </body>
-</html>
+    <table class="table-bordered table-hover">
+        <thead class="thead-light">
+            <th>Short</th>
+            <th>Long</th>
+        </thead>
+        <tbody>
+            #for(acronym in acronyms) {
+            <tr>
+                <td><a href="/acronyms/#(acronym.id)">#(acronym.short)</a></td>
+                <td>#(acronym.long)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    } else {
+    <h2>There aren't any acronyms yet!</h2>
+    }
+}
+#embed("base")
+
+
+
