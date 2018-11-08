@@ -295,6 +295,9 @@ struct WebsiteController: RouteCollection {
                         username: data.username,
                         password: password)
         
+        let logger = try req.make(Logger.self)
+        logger.info("Logger created!")
+        
         return user.save(on: req).map(to: Response.self) { user in
             try req.authenticateSession(user)
             return req.redirect(to: "/")
