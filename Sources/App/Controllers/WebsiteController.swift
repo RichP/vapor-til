@@ -312,9 +312,15 @@ struct WebsiteController: RouteCollection {
         
         let password = try BCrypt.hash(data.password)
         
+        var twitterURL: String?
+        if let twitter = data.twitterURL, !twitter.isEmpty {
+            twitterURL = twitter
+        }
+        
         let user = User(name: data.name,
                         username: data.username,
-                        password: password)
+                        password: password,
+                        twitterURL: twitterURL)
         
         let logger = try req.make(Logger.self)
         logger.info("Logger created!")
@@ -409,6 +415,7 @@ struct RegisterData: Content {
     let username: String
     let password: String
     let confirmPassword: String
+    let twitterURL: String?
 }
 
 extension RegisterData: Validatable, Reflectable {
